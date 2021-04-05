@@ -11,6 +11,7 @@ class PeminjamanController extends Controller
   public function __construct()
   {
     $this->PeminjamanModel = new PeminjamanModel();
+    $this->middleware('auth');
   }
 
   public function index()
@@ -75,8 +76,8 @@ class PeminjamanController extends Controller
   {
     // hapus foto 
     $peminjaman = $this->PeminjamanModel->detailData($id_barang);
-    if ($peminjaman->foto_peminjaman <> "") {
-      unlink(public_path('foto_peminjaman') . '/' . $peminjaman->foto_peminjaman);
+    if ($peminjaman->foto <> "") {
+      unlink(public_path('foto_peminjaman') . '/' . $peminjaman->foto);
     }
     $this->PeminjamanModel->deleteData($id_barang);
     return redirect()->route('peminjaman')->with('pesan', 'DATA BERHASIL HAPUS!!!');

@@ -11,6 +11,7 @@ class DemisionerMusikController extends Controller
     public function __construct()
     {
         $this->DemisionerModel = new DemisionerModel();
+        $this->middleware('auth');
     }
 
     public function index()

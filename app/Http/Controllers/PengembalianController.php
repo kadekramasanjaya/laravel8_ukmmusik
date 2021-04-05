@@ -11,6 +11,7 @@ class PengembalianController extends Controller
   public function __construct()
   {
     $this->PengembalianModel = new PengembalianModel();
+    $this->middleware('auth');
   }
 
   public function index()
@@ -71,6 +72,44 @@ class PengembalianController extends Controller
     return view('editpengembalian', $data);
   }
 
+  public function updatepengembalian($id_barang)
+  {
+    Request()->validate([
+      'nama_barang' => 'required',
+      'nama_pengembali' => 'required',
+      'tanggal' => 'required',
+      'foto' => 'required|mimes:jpg,jpeg,bmp,png|max:1024',
+    ]);
+
+    // jika validasi tidak ada maka lakukan simpan data
+    if (Request()->foto <> "") {
+      // jika ingin ganti foto
+      // upload gambar/foto
+      $file = Request()->foto;
+      $fileName = Request()->nama_barang . '.' . $file->extension();
+      $file->move(public_path('foto_pengembalian'), $fileName);
+
+      $data = [
+        'nama_barang' => Request()->nama_barang,
+        'nama_pengembali' => Request()->nama_pengembali,
+        'tanggal' => Request()->tanggal,
+        'foto' => $fileName,
+      ];
+
+      $this->PengembalianModel->editData($id_barang, $data);
+    } else {
+      // jika tidak ingin ganti foto
+      $data = [
+        'nama_barang' => Request()->nama_barang,
+        'nama_pengembali' => Request()->nama_pengembali,
+        'tanggal' => Request()->tanggal,
+      ];
+
+      $this->PengembalianModel->editData($id_barang, $data);
+    }
+
+    return redirect()->route('pengembalian')->with('pesan', 'DATA BERHASIL UPDATE!!!');
+  }
   public function deletepengembalian($id_barang)
   {
     // hapus foto 

@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\DashboardModel;
 
-class HomeController extends Controller
+class UserController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -26,15 +26,15 @@ class HomeController extends Controller
     public function index()
     {
         $data = [
-            'dashboard' => $this->DashboardModel->allDataMahasiswa(),
+            'user' => $this->DashboardModel->allDataMahasiswa(),
         ];
-        return view('dashboard', $data);
+        return view('user', $data);
     }
     public function print()
     {
         $data = [
-            'dashboard' => $this->DashboardModel->allDataMahasiswa(),
+            'user' => $this->DashboardModel->allDataMahasiswa(),
         ];
-        return view('dashboardprintpdf', $data);
+        return view('userprintpdf', $data);
     }
 }

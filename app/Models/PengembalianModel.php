@@ -20,6 +20,12 @@ class PengembalianModel extends Model
   {
     DB::table('tbl_pengembalian')->insert($data);
   }
+  public function editdata($id_barang, $data)
+  {
+    DB::table('tbl_pengembalian')
+      ->where('id_barang', $id_barang)
+      ->update($data);
+  }
   public function deleteData($id_barang)
   {
     DB::table('tbl_pengembalian')

@@ -92,7 +92,8 @@
                                         <td>
                                             <a href="/pengembalian/detailpengembalian/{{ $data->id_barang }}"
                                                 class="btn btn-sm btn-succes">Detail</a>
-                                            <a href="" class="btn btn-sm btn-warning">Edit</a>
+                                            <a href="/pengembalian/editpengembalian/{{ $data->id_barang }}   "
+                                                class="btn btn-sm btn-warning">Edit</a>
                                             <button type="button" class="btn btn-danger" data-toggle="modal"
                                                 data-target="#delete{{ $data->id_barang }}">DELETE</button>
                                         </td>

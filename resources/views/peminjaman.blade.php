@@ -119,7 +119,7 @@
     @foreach ($peminjaman as $data)
 
 
-        <div class="modal fade" id="delete{{ $data->id_produk }}">
+        <div class="modal fade" id="delete{{ $data->id_barang }}">
             <div class="modal-dialog">
                 <div class="modal-content bg-danger">
                     <div class="modal-header">
